@@ -3,12 +3,16 @@ services:
   consumer:
     build:
       context: .
-      dockerfile: Dockerfile.consumer
+      dockerfile: Dockerfile
+      args:
+        type: consumer
     ports:
      - "9000:8080"
   producer:
     build:
       context: .
-      dockerfile: Dockerfile.producer
+      dockerfile: Dockerfile
+      args:
+        type: producer
     ports:
      - "8000:8080"

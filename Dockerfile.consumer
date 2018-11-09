@@ -1,6 +1,0 @@
-FROM golang:1.11-alpine
-RUN mkdir /consumer 
-ADD consumer /consumer/ 
-WORKDIR /consumer 
-RUN go build cmd/main.go
-CMD ["/consumer/main"]
