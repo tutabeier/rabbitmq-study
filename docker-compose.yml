@@ -1,5 +1,10 @@
 version: '3'
 services:
+  rabbitmq:
+    image: rabbitmq:3.7-management-alpine
+    ports:
+      - "15672:15672"
+      - "5672:5672"
   consumer:
     build:
       context: .
@@ -7,7 +12,9 @@ services:
       args:
         type: consumer
     ports:
-     - "9000:8080"
+      - "9000:8080"
+    links:
+      - "rabbitmq:rabbitmq"
   producer:
     build:
       context: .
@@ -15,4 +22,6 @@ services:
       args:
         type: producer
     ports:
-     - "8000:8080"
+      - "8000:8080"
+    links:
+      - "rabbitmq:rabbitmq"
